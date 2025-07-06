@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -7,12 +8,13 @@ import { Bell, Wallet, Globe, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
               <Globe className="h-4 w-4 text-white" />
             </div>
@@ -24,16 +26,16 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Button variant="ghost" className="text-sm font-medium">
+          <Button variant="ghost" className="text-sm font-medium" onClick={() => navigate('/professional')}>
             💼 Professionnel
           </Button>
-          <Button variant="ghost" className="text-sm font-medium">
+          <Button variant="ghost" className="text-sm font-medium" onClick={() => navigate('/affective')}>
             💘 Affectif
           </Button>
-          <Button variant="ghost" className="text-sm font-medium">
+          <Button variant="ghost" className="text-sm font-medium" onClick={() => navigate('/social')}>
             🎮 Socio-culturel
           </Button>
-          <Button variant="ghost" className="text-sm font-medium">
+          <Button variant="ghost" className="text-sm font-medium" onClick={() => navigate('/real-estate')}>
             🏠 Immobilier
           </Button>
         </nav>
@@ -52,7 +54,7 @@ const Header = () => {
             <span>0.245 ETH</span>
           </Button>
 
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-8 w-8 cursor-pointer hover:ring-2 hover:ring-blue-300 transition-all" onClick={() => navigate('/profile')}>
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback className="gradient-primary text-white text-xs">
               GM
@@ -75,16 +77,16 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-background/95 backdrop-blur">
           <nav className="container py-4 space-y-2">
-            <Button variant="ghost" className="w-full justify-start">
+            <Button variant="ghost" className="w-full justify-start" onClick={() => {navigate('/professional'); setIsMenuOpen(false);}}>
               💼 Professionnel
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
+            <Button variant="ghost" className="w-full justify-start" onClick={() => {navigate('/affective'); setIsMenuOpen(false);}}>
               💘 Affectif
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
+            <Button variant="ghost" className="w-full justify-start" onClick={() => {navigate('/social'); setIsMenuOpen(false);}}>
               🎮 Socio-culturel
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
+            <Button variant="ghost" className="w-full justify-start" onClick={() => {navigate('/real-estate'); setIsMenuOpen(false);}}>
               🏠 Immobilier
             </Button>
           </nav>
